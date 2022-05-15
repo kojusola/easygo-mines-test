@@ -9,8 +9,6 @@ import {
   gameState,
 } from "./api";
 import styled from "styled-components";
-import { Gem } from "./assets";
-import { Mine } from "./assets";
 import gemAudio from "./assets/gem.mp3";
 import mineAudio from "./assets/mine.mp3";
 import SingleBox from "./components/Box";
@@ -25,11 +23,22 @@ const StyledContainer = styled.div`
   flex-direction: column;
   border-radius: 0.5em;
   margin-bottom: 1em;
-  justify-content: space-between;
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  flex-wrap: wrap;
+   @media (max-width: 720px) {
+     display: flex;
+      flex-direction: column;
+      // max-width: 300px;
+      margin: 0;
+      width:100%;
+      height:300px;
+    }
+     @media (max-width: 390px) {
+      // max-width: 250px;
+      width:100%;
+      minHeight:250px;
+    }
 
   .boxContainer {
     display: grid;
@@ -46,19 +55,44 @@ const StyledContainer = styled.div`
     padding: 1em;
     margin: 0 auto;
     background-color: #23303cb0;
-    @media (max-width: 700px) {
-      maxWidth: 400px;
-      width: 100%;
-      height: 800px;
+    @media (max-width: 840px) {
+      margin: 0 auto;
+      display: grid;
       grid-template-rows: repeat(
         ${(props: StyledContainerProps) => props.boxNumber},
-        1fr
+        50px
       );
       grid-template-columns: repeat(
         ${(props: StyledContainerProps) => props.boxNumber},
-        1fr
+        50px
       );
       gap: 10px;
+    }
+     @media (max-width: 490px) {
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: repeat(
+        ${(props: StyledContainerProps) => props.boxNumber},
+        40px
+      );
+      grid-template-columns: repeat(
+        ${(props: StyledContainerProps) => props.boxNumber},
+        40px
+      );
+      gap: 5px;
+    }
+    @media (max-width: 360px) {
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: repeat(
+        ${(props: StyledContainerProps) => props.boxNumber},
+        35px
+      );
+      grid-template-columns: repeat(
+        ${(props: StyledContainerProps) => props.boxNumber},
+        35px
+      );
+      gap: 5px;
     }
   }
   .hoverText {
@@ -72,6 +106,9 @@ const StyledContainer = styled.div`
     align-items: center;
     justify-content: center;
     z-index: 15;
+    @media (max-width: 360px) {
+           font-size: 9px;
+        }
   }
   .idle {
     color: red;
@@ -95,6 +132,9 @@ const StyledContainer = styled.div`
       border: none;
       font-size: 1.5em;
       transition: all 0.3s ease;
+      @media (max-width: 360px) {
+           width: 10em;
+        }
       &:hover {
         background-color: yellow;
         color: black;
@@ -119,6 +159,9 @@ const StyledContainer = styled.div`
       border: none;
       font-size: 1.5em;
       transition: all 0.3s ease;
+      @media (max-width: 360px) {
+           width: 10em;
+        }
       &:hover {
         background-color: yellow;
         color: black;
@@ -128,6 +171,7 @@ const StyledContainer = styled.div`
   .buttonCollection {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
       button {
@@ -141,6 +185,9 @@ const StyledContainer = styled.div`
         border: none;
         font-size: 1.5em;
         transition: all 0.3s ease;
+        @media (max-width: 360px) {
+           width: 10em;
+        }
         &:hover {
           background-color: yellow;
           color: black;
@@ -204,7 +251,7 @@ const Game = () => {
               <input
                 type="number"
                 min="5"
-                max="8"
+                max="7"
                 defaultValue="5"
                 onChange={(e) => setBoxNumber(Number(e.currentTarget.value))}
               ></input>

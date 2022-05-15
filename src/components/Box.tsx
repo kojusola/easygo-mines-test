@@ -66,6 +66,9 @@ const StyledBox = styled.div`
       text-align: center;
       transition-delay: 2s;
       transition: transform 0.3s ease-out;
+      @media (max-width: 360px) {
+        font-size: 5px;
+      }
     }
 
     &::before {
